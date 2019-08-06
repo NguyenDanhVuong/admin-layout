@@ -112,9 +112,9 @@
                 <!-- Optionally, you can add icons to the links -->
                 <li class=""><a href="../admin.html">
                     <i class="fa fa-dashboard"></i>  <span>Dashboard</span></a></li>
-                <li class=""><a href="../article/article.html"><i class="fa fa-user"></i> <span>Article</span></a></li>
-                <li class=""><a href="category.html"><i class="fa fa-code-fork"></i> <span>Categories</span></a></li>
-                <li class=""><a><i class="fa fa-shopping-cart"></i> <span>Order</span></a></li>
+                <li class=""><a href="#"><i class="fa fa-user"></i> <span>Article</span></a></li>
+                <li class=""><a href="../category/category.html"><i class="fa fa-code-fork"></i> <span>Categories</span></a></li>
+                <li class=""><a href="../crawler-source/crawler.html"><i class="fa fa-shopping-cart"></i> <span>Crawler Source</span></a></li>
                 <li class=""><a><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
             </ul>
             <!-- /.sidebar-menu -->
@@ -125,8 +125,8 @@
         <section class="content-header">
             <h6>
                 <ol class="breadcrumb">
-                    <li><a asp-action="Dashboard" asp-controller="Admin"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-                    <li><a asp-action="Index" asp-controller="Admin"><i class="fa fa-user"></i> Article</a></li>
+                    <li><a ><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                    <li><a ><i class="fa fa-user"></i> Article</a></li>
                     <li class="active">Create</li>
                 </ol>
             </h6>
@@ -167,14 +167,14 @@
                                 <label asp-for="Password" class="control-label col-sm-2">Description</label>
                                 <div class="col-sm-10">
                                     <input asp-for="Password" class="form-control" />
-                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                    <span  class="text-danger"></span>
                                 </div>
                             </div> 
                              <div class="form-group">
                                 <label asp-for="Password" class="control-label col-sm-2">Content</label>
                                 <div class="col-sm-10">
                                     <input asp-for="Password" class="form-control" />
-                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                    <span  class="text-danger"></span>
                                 </div>
                             </div>                        
                             <div class="box-footer">
