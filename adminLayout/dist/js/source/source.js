@@ -1,23 +1,33 @@
 $(document).ready(function () {
+    var END_POINT = "https://crawler-dot-backup-server-mie-01.appspot.com";
     $.ajax({
-        url: END_POINT + "/api/v1/home",
+        url: END_POINT + "/api/v1/source",
         success:function(data) {
             console.log(data.data);
-            var listCategory = data.data;
+            var listSource = data.data;
             var content = "";
-            for (var i = 0; i < listCategory.length; i++) {
+            for (var i = 0; i < listSource.length; i++) {
                 content += "<tr>\n" +
-                    "     <td>\n" + listCategory[i].name +
+                    "     <td>\n" + listSource[i].url +
                     "         \n" +
                     "     </td>\n" +
-                    "     <td>\n" + listCategory[i].description.substring(0, 100) + "..." +
+                    "     <td>\n" + listSource[i].link_selector +
                     "         \n" +
                     "     </td>\n" +
-                    "     <td>\n" + getTimeHuman(listCategory[i].created_at) +
+                    "     <td>\n" + listSource[i].title_selector +
+                    "         \n" +
+                    "     </td>\n" +
+                    "     <td>\n" + listSource[i].description_selector +
+                    "         \n" +
+                    "     </td>\n" +
+                    "     <td>\n" + listSource[i].content_selector +
+                    "         \n" +
+                    "     </td>\n" +
+                    "     <td>\n" + listSource[i].author_selector +
                     "         \n" +
                     "     </td>\n" +
                     "     <td>\n" +
-                    "         <a href='add.html?id="+ listCategory[i].id +"' style=\"margin-right:6px; color:forestgreen\">\n" +
+                    "         <a href='add.html?id="+ listSource[i].id +"' style=\"margin-right:6px; color:forestgreen\">\n" +
                     "             <i class=\"fa fa-list-alt\" aria-hidden=\"true\" data-toggle=\"tooltip\" title=\"Details\"></i>\n" +
                     "         </a>\n" +
                     "         <a href='#' style=\"color:red\">\n" +
