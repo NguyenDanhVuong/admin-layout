@@ -1,5 +1,7 @@
 $(document).ready(function () {
     var sourceId = getUrlParameter('id');
+    console.log(sourceId);
+    console.log("1");
 
     $('#cate_form').validate({
         onfocusout: false,
@@ -9,24 +11,46 @@ $(document).ready(function () {
             "url": {
                 required: true
             },
-            "link_selector": {
-                required: true
-            },
-            "description": {
-                required: true
-            },
             "title_selector": {
+                required: true
+            },
+            "link_selector": {
                 required: true
             },
             "content_selector": {
                 required: true
             },
+            "description_selector": {
+                required: true
+            },
+            "thumnail_selector": {
+                required: true
+            },
+            "remove_selector": {
+                required: true
+            },
             "author_selector": {
+                required: true
+            },
+            "category_id": {
                 required: true
             }
         }
     });
 
+
+    $.ajax({
+        url: END_POINT + "/api/v1/category",
+        success:function(data) {
+            console.log(data.data);
+            var listCategory = data.data;
+            var content = "";
+            for (var i = 0; i < listCategory.length; i++) {
+                content += "<option value=\""+listCategory[i].id+"\">"+listCategory[i].name+"</option>";
+            }
+            $("select[name=category_id]").html(content);
+        }
+    });
 
     if (sourceId != undefined) {
         $.ajax({
@@ -34,35 +58,43 @@ $(document).ready(function () {
             success:function(data) {
                 console.log(data.data);
                 var source = data.data;
-                $("input[name=url]").text(source.url);
-                $("input[name=link_selector]").text(source.link_selector);
-                $("input[name=limit]").text(source.limit);
-                $("textarea[name=description_selector]").text(source.description_selector);
-                $("input[name=title_selector]").text(source.title_selector);
-                $("input[name=content_selector]").text(source.content_selector);
-                $("input[name=author_selector]").text(source.author_selector);
+                $("input[name=url]").val(source.url);
+                $("input[name=title_selector]").val(source.title_selector);
+                $("input[name=link_selector]").val(source.link_selector);
+                $("input[name=content_selector]").val(source.content_selector);
+                $("input[name=description_selector]").val(source.description_selector);
+                $("input[name=thumnail_selector]").val(source.thumnail_selector);
+                $("input[name=remove_selector]").val(source.remove_selector);
+                $("input[name=author_selector]").val(source.author_selector);
             }
         });
 
+
         $(document).on('click', '.btn-save', function () {
             var url = $("input[name=url]").val();
-            var link_selector = $("input[name=link_selector]").val();
-            var description_selector = $("textarea[name=description_selector]").val();
             var title_selector = $("input[name=title_selector]").val();
+            var link_selector = $("input[name=link_selector]").val();
             var content_selector = $("input[name=content_selector]").val();
+            var description_selector = $("input[name=description_selector]").val();
+            var thumnail_selector = $("input[name=thumnail_selector]").val();
+            var remove_selector = $("input[name=remove_selector]").val();
             var author_selector = $("input[name=author_selector]").val();
+            var category_id = $("select[name=category_id]").val();
 
+            console.log(category_id);
             $("#cate_form").submit(function (e) {
                 e.preventDefault();
                 if($(this).valid()) {
                     var data = {
                         "url" : url,
-                        "link_selector" : link_selector,
-                        "description" : description_selector,
                         "title_selector" : title_selector,
+                        "link_selector" : link_selector,
                         "content_selector" : content_selector,
+                        "description_selector" : description_selector,
+                        "thumnail_selector" : thumnail_selector,
+                        "remove_selector" : remove_selector,
                         "author_selector" : author_selector,
-
+                        "category_id" : category_id
                     };
                     $.ajax({
                         url: END_POINT+"/api/v1/source?id="+sourceId,
@@ -82,23 +114,31 @@ $(document).ready(function () {
     else {
         $(document).on('click', '.btn-save', function () {
             var url = $("input[name=url]").val();
-            var link_selector = $("input[name=link_selector]").val();
-            var description_selector = $("textarea[name=description_selector]").val();
             var title_selector = $("input[name=title_selector]").val();
+            var link_selector = $("input[name=link_selector]").val();
             var content_selector = $("input[name=content_selector]").val();
+            var description_selector = $("input[name=description_selector]").val();
+            var thumnail_selector = $("input[name=thumnail_selector]").val();
+            var remove_selector = $("input[name=remove_selector]").val();
             var author_selector = $("input[name=author_selector]").val();
-            var data = {
-                "url" : url,
-                "link_selector" : link_selector,
-                "description" : description_selector,
-                "title_selector" : title_selector,
-                "content_selector" : content_selector,
-                "author_selector" : author_selector,
-            };
-            console.log(data);
+            var category_id = $("select[name=category_id]").val();
+
+            console.log(category_id);
             $("#cate_form").submit(function (e) {
                 e.preventDefault();
                 if($(this).valid()) {
+                    var data = {
+                        "url" : url,
+                        "title_selector" : title_selector,
+                        "link_selector" : link_selector,
+                        "content_selector" : content_selector,
+                        "description_selector" : description_selector,
+                        "thumnail_selector" : thumnail_selector,
+                        "remove_selector" : remove_selector,
+                        "author_selector" : author_selector,
+                        "category_id" : category_id
+                    };
+
                     $.ajax({
                         url: END_POINT+"/api/v1/source",
                         type: 'POST',
