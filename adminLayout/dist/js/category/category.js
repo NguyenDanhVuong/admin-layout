@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $.ajax({
-        url: END_POINT + "/api/v1/home",
+        url: END_POINT + "/api/v1/category",
         success:function(data) {
             console.log(data.data);
             var listCategory = data.data;
