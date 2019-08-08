@@ -8,6 +8,9 @@ $(document).ready(function () {
             var content = "";
             for (var i = 0; i < listSource.length; i++) {
                 content += "<tr>\n" +
+                    "     <td>\n" + listSource[i].category.name +
+                    "        \n" +
+                    "     </td>\n" +
                     "     <td>\n" + listSource[i].url +
                     "         \n" +
                     "     </td>\n" +

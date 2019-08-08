@@ -10,7 +10,7 @@ $(document).ready(function () {
                     "     <td>\n" + listCategory[i].name +
                     "         \n" +
                     "     </td>\n" +
-                    "     <td>\n" + listCategory[i].description.substring(0, 100) + "..." +
+                    "     <td>\n" + listCategory[i].description.split('100', 20) + " ..." +
                     "         \n" +
                     "     </td>\n" +
                     "     <td>\n" + getTimeHuman(listCategory[i].created_at) +

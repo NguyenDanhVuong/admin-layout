@@ -66,6 +66,7 @@ $(document).ready(function () {
                 $("input[name=thumnail_selector]").val(source.thumnail_selector);
                 $("input[name=remove_selector]").val(source.remove_selector);
                 $("input[name=author_selector]").val(source.author_selector);
+
             }
         });
 
