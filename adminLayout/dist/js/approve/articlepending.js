@@ -1,22 +1,57 @@
 $(document).ready(function () {
+    loadArticle();
+
+    $(document).on('click', '#btn-check-all', function () {
+        $("input[type=checkbox]").prop('checked', $(this).prop('checked'));
+    });
+
+    $(document).on('click', '#btn-approve-multi', function () {
+        var searchIDs = $("tbody input:checkbox:checked").map(function(){
+            return parseInt($(this).val());
+        }).get();
+        console.log(searchIDs);
+        $.ajax({
+            url: END_POINT + "/api/v1/article/approval",
+            type: "POST",
+            data : JSON.stringify(searchIDs),
+            // contentType: "application/json; charset=utf-8",
+            headers: {
+                "token": "SE8EtHDKBUWjhTs51M7u8Hby09vSH3dW"
+            },
+            success:function(data) {
+                loadArticle();
+            },
+            error :function(err) {
+                console.log(err);
+                console.log(err.responseJSON.message);
+            }
+        });
+    });
+});
+
+function loadArticle() {
     $.ajax({
         url: END_POINT + "/api/v1/article/approval",
+        // contentType: "application/json; charset=utf-8",
+        // headers: {
+        //     "token": "Bz0tRnVB2CBAllaOpvdhuvf_6fjnSR3R"
+        // },
         success:function(data) {
-            console.log(data.data);
+            var str = "aasakdjsoajdsaljd;lsakjdlsakjd;lsakj ksjd; lks dljsadj  salj ds jdsljd kajsd lkasjd lsjadl ksjd; sad";
             var listArticle = data.data;
             var content = "";
             for (var i = 0; i < listArticle.length; i++) {
                 content += "<tr>\n" +
+                    "    <td>\n" +
+                    "        <input type=\"checkbox\" value='"+listArticle[i].id+"'>\n" +
+                    "    </td>\n" +
                     "    <td>\n" + listArticle[i].category.name +
                     "        \n" +
                     "    </td>\n" +
                     "    <td>\n" + listArticle[i].title +
                     "        \n" +
                     "    </td>\n" +
-                    "    <td>\n" + listArticle[i].description.split('100', 5) + "..." +
-                    "        \n" +
-                    "    </td>\n" +
-                    "    <td>\n" + listArticle[i].content.substring(0, 100) + " ..." +
+                    "    <td>\n" + listArticle[i].description.split(' ', 10).join(' ') + "..." +
                     "        \n" +
                     "    </td>\n" +
                     "    <td>\n" +
@@ -34,6 +69,10 @@ $(document).ready(function () {
                     "</tr>";
             }
             $("#myTable tbody").html(content);
+        },
+        error :function(err) {
+            console.log(err);
+            console.log(err.responseJSON.message);
         }
     });
-});
+}
