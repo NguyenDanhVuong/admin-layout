@@ -20,7 +20,7 @@ $(document).ready(function () {
                     "        \n" +
                     "    </td>\n" +
                     "    <td>\n" +
-                    "        <a href='add.html?id='" + listArticle[i].id + " style=\"margin-right:6px; color: dodgerblue\">\n" +
+                    "        <a href='add.html?id=" + listArticle[i].id + "' style=\"margin-right:6px; color: dodgerblue\">\n" +
                     "            <i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\" data-toggle=\"tooltip\" title=\"Edit\"></i>\n" +
                     "        </a>\n" +
                     "\n" +
