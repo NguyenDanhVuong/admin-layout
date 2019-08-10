@@ -10,17 +10,23 @@ $(document).ready(function () {
                     "    <td>\n" + listArticle[i].category.name +
                     "        \n" +
                     "    </td>\n" +
+                    "    <td>\n" + listArticle[i].url +
+                    "        \n" +
+                    "    </td>\n" +
                     "    <td>\n" + listArticle[i].title +
                     "        \n" +
                     "    </td>\n" +
                     "    <td>\n" + listArticle[i].description.split('100', 5) + "..." +
                     "        \n" +
                     "    </td>\n" +
-                    "    <td>\n" + listArticle[i].content.substring(0, 100) + " ..." +
+                    "    <td>\n" + listArticle[i].link +
+                    "        \n" +
+                    "    </td>\n" +
+                    "    <td>\n" + listArticle[i].content.split('100', 5) + " ..." +
                     "        \n" +
                     "    </td>\n" +
                     "    <td>\n" +
-                    "        <a href='add.html?id='" + listArticle[i].id + " style=\"margin-right:6px; color: dodgerblue\">\n" +
+                    "        <a href='add.html?id=" + listArticle[i].id + "' style=\"margin-right:6px; color: dodgerblue\">\n" +
                     "            <i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\" data-toggle=\"tooltip\" title=\"Edit\"></i>\n" +
                     "        </a>\n" +
                     "\n" +

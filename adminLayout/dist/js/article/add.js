@@ -1,52 +1,96 @@
 $(document).ready(function () {
-    var categoryId = getUrlParameter('id');
+    var articleId = getUrlParameter('id');
+    console.log(articleId);
 
     $('#cate_form').validate({
         onfocusout: false,
         onkeyup: false,
         onclick: false,
         rules: {
-            "name": {
-                required: true,
-                maxlength: 255
+            "url":{
+                required: true
+            },
+            "title": {
+                required: true
             },
             "description": {
+                required: true
+            },
+            "content": {
+                required: true
+            },
+            "author": {
+                required: true
+            },
+            "link": {
+                required: true
+            },
+            "category_id": {
                 required: true
             }
         }
     });
 
 
-    if (categoryId != undefined) {
+    $.ajax({
+        url: END_POINT + "/api/v1/category",
+        success:function(data) {
+            console.log(data.data);
+            var listCategory = data.data;
+            var content = "";
+            for (var i = 0; i < listCategory.length; i++) {
+                content += "<option value=\""+listCategory[i].id+"\">"+listCategory[i].name+"</option>";
+            }
+            $("select[name=category_id]").html(content);
+        }
+    });
+
+    if (articleId != undefined) {
         $.ajax({
-            url: END_POINT+"/api/v1/category?id="+categoryId,
+            url: END_POINT+"/api/v1/article?id="+articleId,
             success:function(data) {
                 console.log(data.data);
-                var category = data.data;
-                $("input[name=name]").val(category.name);
-                $("textarea[name=description]").html(category.description);
+                var article = data.data;
+                $("input[name=url]").val(article.url);
+                $("input[name=title]").val(article.title);
+                $("input[name=link]").val(article.link);
+                $("input[name=content]").val(article.content);
+                $("input[name=description]").val(article.description);
+                $("input[name=author]").val(article.author);
+
             }
         });
 
         $(document).on('click', '.btn-save', function () {
-            var name = $("input[name=name]").val();
-            var description = $("textarea[name=description]").val();
+            var url = $("input[name=url]").val();
+            var title = $("input[name=title]").val();
+            var link = $("input[name=link]").val();
+            var content = $("input[name=content]").val();
+            var description = $("input[name=description]").val();
+            var author = $("input[name=author]").val();
+            var category_id = $("select[name=category_id]").val();
 
+            console.log(category_id)
             $("#cate_form").submit(function (e) {
                 e.preventDefault();
                 if($(this).valid()) {
                     var data = {
-                        "name" : name,
-                        "description" : description
+                        "url" : url,
+                        "title" : title,
+                        "link_selector" : link,
+                        "content" : content,
+                        "description" : description,
+                        "author" : author,
+                        "category_id" : category_id
                     };
                     $.ajax({
-                        url: END_POINT+"/api/v1/category?id="+categoryId,
+                        url: END_POINT+"/api/v1/article?id="+articleId,
                         type: 'PUT',
                         contentType: "application/json; charset=utf-8",
                         data : JSON.stringify(data),
                         success:function(data) {
                             console.log(data.data);
-                            window.location.href = "add.html?id="+categoryId+"&status=success"
+                            window.location.href = "add.html?id=" + articleId + "&status=success"
                         }
                     });
                 }
@@ -56,24 +100,36 @@ $(document).ready(function () {
     }
     else {
         $(document).on('click', '.btn-save', function () {
-            var name = $("input[name=name]").val();
-            var description = $("textarea[name=description]").val();
+            var url = $("input[name=url]").val();
+            var title = $("input[name=title]").val();
+            var link = $("input[name=link]").val();
+            var content = $("input[name=content]").val();
+            var description = $("input[name=description]").val();
+            var author = $("input[name=author]").val();
+            var category_id = $("select[name=category_id]").val();
+
+            console.log(category_id);
             var data = {
-                "name" : name,
-                "description" : description
+                "url" : url,
+                "title" : title,
+                "link" : link,
+                "content" : content,
+                "description" : description,
+                "author" : author,
+                "category_id" : category_id
             };
-            console.log(data);
+
             $("#cate_form").submit(function (e) {
                 e.preventDefault();
                 if($(this).valid()) {
                     $.ajax({
-                        url: END_POINT+"/api/v1/category",
+                        url: END_POINT+"/api/v1/article",
                         type: 'POST',
                         contentType: "application/json; charset=utf-8",
                         data : JSON.stringify(data),
                         success:function(data) {
                             console.log(data.data);
-                            window.location.href = "category.html?status=success"
+                            window.location.href = "crawler.html?status=success"
                         }
                     });
                 }
