@@ -1,6 +1,5 @@
 $(document).ready(function () {
     loadArticle();
-    var token = localStorage.getItem('token');
 
     $(document).on('click', '#btn-check-all', function () {
         $("input[type=checkbox]").prop('checked', $(this).prop('checked'));
