@@ -16,7 +16,7 @@ $(document).ready(function () {
             data : JSON.stringify(data),
             success:function(data) {
                 localStorage.setItem('token', data.data.token);
-                window.location.href = "../admin.html?email="+email;
+                window.location.href = "../home/admin.html?email="+email;
             },
             error: function(err) {
                 $(".response-error").text(err.responseJSON.message);

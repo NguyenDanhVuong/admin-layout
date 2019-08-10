@@ -1,5 +1,40 @@
 var END_POINT = "https://crawler-dot-backup-server-mie-01.appspot.com";
 
+
+$(document).ready(function () {
+    var token = localStorage.getItem('token');
+    var email = localStorage.getItem('email');
+    console.log(email);
+
+    var path      = window.location.href;
+    var arr = path.split('/');
+    var folder = arr[arr.length-2];
+    if (folder == 'auth') {
+        if (token != null) {
+            window.location.href = "../home/admin.html";
+        }
+    } else {
+        if (token == null) {
+            window.location.href = "../auth/login.html";
+        }
+    }
+    console.log(folder);
+
+    $(document).on('click', '#logout', function () {
+        logout();
+    });
+    $("aside.main-sidebar").load("../widgets/aside.html");
+    $("header.main-header").load("../widgets/header.html");
+    $('.user-email').text(email);
+});
+
+function logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('email');
+    window.location.href = "../auth/login.html";
+}
+
+
 function getTimeHuman(timestamp) {
     var now = $.now();
     var time = (now - timestamp)/1000;

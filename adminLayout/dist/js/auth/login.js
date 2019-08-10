@@ -10,6 +10,7 @@ $(document).ready(function () {
             type: "POST",
             data : JSON.stringify(data),
             success:function(data) {
+                localStorage.setItem('email', email);
                 window.location.href = "lockscreen.html?email="+email;
             },
             error: function(err) {
