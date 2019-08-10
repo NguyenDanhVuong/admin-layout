@@ -1,5 +1,6 @@
 $(document).ready(function () {
     var categoryId = getUrlParameter('id');
+    var token = localStorage.getItem('token');
 
     $('#cate_form').validate({
         onfocusout: false,
@@ -42,6 +43,9 @@ $(document).ready(function () {
                     $.ajax({
                         url: END_POINT+"/api/v1/category?id="+categoryId,
                         type: 'PUT',
+                        headers: {
+                            "Authorization": token
+                        },
                         data : JSON.stringify(data),
                         success:function(data) {
                             console.log(data.data);
