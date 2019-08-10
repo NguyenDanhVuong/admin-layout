@@ -1,5 +1,6 @@
 $(document).ready(function () {
     loadArticle();
+    var token = localStorage.getItem('token');
 
     $(document).on('click', '#btn-check-all', function () {
         $("input[type=checkbox]").prop('checked', $(this).prop('checked'));
@@ -18,7 +19,7 @@ $(document).ready(function () {
             type: "POST",
             data : JSON.stringify(data),
             headers: {
-                "Authorization": "SE8EtHDKBUWjhTs51M7u8Hby09vSH3dW"
+                "Authorization": token
             },
             success:function(data) {
                 loadArticle();
