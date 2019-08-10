@@ -82,11 +82,11 @@ $(document).ready(function () {
                 $.ajax({
                     url: END_POINT+"/api/v1/article/special",
                     type: 'POST',
-                    contentType: "application/json; charset=utf-8",
+                    headers: {'Authorization': '_oBovX8665OYlDn6sRD1vMnc22uL2B2G'},
                     data : JSON.stringify(data),
                     success:function(data) {
                         console.log(data.data);
-                        window.location.href = "pending.html?status=success"
+                        window.location.href = "../approve/pending.html?status=success"
                     }
                 });
             }
