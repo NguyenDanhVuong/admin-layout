@@ -16,13 +16,10 @@ $(document).ready(function () {
                     "    <td>\n" + listArticle[i].title +
                     "        \n" +
                     "    </td>\n" +
-                    "    <td>\n" + listArticle[i].description.split('100', 5) + "..." +
+                    "    <td>\n" + listArticle[i].description.split(' ', 25).join(' ') + "..." +
                     "        \n" +
                     "    </td>\n" +
-                    "    <td>\n" + listArticle[i].link +
-                    "        \n" +
-                    "    </td>\n" +
-                    "    <td>\n" + listArticle[i].content.split('100', 5) + " ..." +
+                    "    <td>\n" + listArticle[i].content.split(' ', 15).join(' ') + " ..." +
                     "        \n" +
                     "    </td>\n" +
                     "    <td>\n" +
@@ -33,7 +30,7 @@ $(document).ready(function () {
                     "        <a style=\"margin-right:6px; color:forestgreen\" class='btn-show-modal' id='"+listArticle[i].id+"'>\n" +
                     "            <i class=\"fa fa-list-alt\" data-toggle=\"tooltip\" title=\"Details\"></i>\n" +
                     "        </a>\n" +
-                    "        <a style=\"color:red\">\n" +
+                    "        <a style=\"color:red\" class='btn-delete' id='"+listArticle[i].id+"' onclick='return confirm(\"Are you sure?\")'>\n" +
                     "            <i class=\"fa fa-trash-o\" aria-hidden=\"true\" data-toggle=\"tooltip\" title=\"Delete\"></i>\n" +
                     "        </a>\n" +
                     "    </td>\n" +
@@ -42,5 +39,21 @@ $(document).ready(function () {
             $("#myTable tbody").html(content);
         }
     });
+
+    $(document).on('click', '.btn-delete', function () {
+        var articleId = $(this).attr("id");
+
+        $.ajax({
+           url: END_POINT + "/api/v1/article?id=" + articleId,
+           type: 'DELETE',
+            success: function () {
+                console.log('Delete success...');
+                window.location.href = "article.html?status=success";
+            },
+            error: function () {
+                console.log(onmessageerror);
+            }
+        });
+    })
 });
 
