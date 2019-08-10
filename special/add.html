@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Add Crawler</title>
+    <title>Add Special</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../adminLayout/bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="../adminLayout/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
     <!--Dashboard style-->
     <link rel="stylesheet" href="../adminLayout/bower_components/morris.js/morris.css">
+    <link rel="stylesheet" href="../adminLayout/dist/css/style.css">
 </head>
 <body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
 <div class="wrapper">
@@ -100,10 +101,10 @@
                 <div class="input-group">
                     <input type="text" name="q" class="form-control" placeholder="Search...">
                     <span class="input-group-btn">
-                                <button type="submit" name="search" id="search-btn" class="btn btn-flat">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
+                        <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
                 </div>
             </form>
             <!-- /.search form -->
@@ -113,8 +114,9 @@
                 <li class=""><a href="../admin.html">
                     <i class="fa fa-dashboard"></i>  <span>Dashboard</span></a></li>
                 <li class=""><a href="../article/article.html"><i class="fa fa-user"></i> <span>Article</span></a></li>
-                <li class=""><a href="../category/category.html"><i class="fa fa-code-fork"></i> <span>Categories</span></a></li>
-                <li class=""><a href="crawler.html"><i class="fa fa-shopping-cart"></i> <span>Crawler Source</span></a></li>
+                <li class=""><a href="category.html"><i class="fa fa-code-fork"></i> <span>Categories</span></a></li>
+                <li class=""><a href="../crawler-source/crawler.html"><i class="fa fa-shopping-cart"></i> <span>Source Crawler</span></a></li>
+                <li class=""><a href="category.html"><i class="fa fa-code-fork"></i> <span>Special</span></a></li>
                 <li class=""><a href="../approve/pending.html"><i class="fa fa-shopping-cart"></i> <span>Approve</span></a></li>
                 <li class=""><a><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
             </ul>
@@ -126,8 +128,8 @@
         <section class="content-header">
             <h6>
                 <ol class="breadcrumb">
-                    <li><a ><i class="fa fa-dashboard"></i> Dashboard</a></li>
-                    <li><a ><i class="fa fa-user"></i> Crawler Scource</a></li>
+                    <li><a href="../admin.html" ><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                    <li><a href="crawler.html" ><i class="fa fa-code-fork"></i> Source</a></li>
                     <li class="active">Create</li>
                 </ol>
             </h6>
@@ -135,72 +137,80 @@
         <section class="content container-fluid">
             <div class="box box-info">
                 <div class="box-header">
-                    <h3 class="box-title">Add Crawler</h3>
+                    <h3 class="box-title">Special info</h3>
                     <hr />
                 </div>
-                <div class="row">
-                    <div class="col-md-8">
-                        <form class="form-horizontal" id="cate_form">
-                            <div  class="text-danger box-body"></div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2">Source Url</label>
-                                <div class="col-sm-10">
-                                    <input  class="form-control" name="url"/>
-                                    <span  class="text-danger"></span>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <form class="form-horizontal" id="special_form">
+                                <div  class="text-danger box-body"></div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">Url</label>
+                                    <div class="col-sm-10">
+                                        <input  class="form-control" name="url"/>
+                                    </div>
                                 </div>
-
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="Status" class="control-label col-sm-2">Link Selector</label>
-                                <div class="col-sm-10">
-                                    <input  class="form-control" name="link_selector"/>
-                                    <span class="text-danger"></span>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">Title selector</label>
+                                    <div class="col-sm-10">
+                                        <input  class="form-control" name="title_selector"/>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label  class="control-label col-sm-2">Link Limit</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" name="limit"/>
-                                    <span class="text-danger"></span>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">Link selector</label>
+                                    <div class="col-sm-10">
+                                        <input  class="form-control" name="link_selector"/>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="Status" class="control-label col-sm-2">Description</label>
-                                <div class="col-sm-10">
-                                    <textarea style="height: 100px;" class="form-control" name="description_selector" />
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">Content selector</label>
+                                    <div class="col-sm-10">
+                                        <input  class="form-control" name="content_selector"/>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label  class="control-label col-sm-2">Title Selector</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" name="title_selector"/>
-                                    <span class="text-danger"></span>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">Description selector</label>
+                                    <div class="col-sm-10">
+                                        <input  class="form-control" name="description_selector"/>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="Password" class="control-label col-sm-2">Content Selector</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" name="content_selector"/>
-                                    <span class="text-danger"></span>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">Thumnail selector</label>
+                                    <div class="col-sm-10">
+                                        <input  class="form-control" name="thumnail_selector"/>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2">Author Selector</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" name="author_selector"/>
-                                    <span class="text-danger"></span>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">Remove selector</label>
+                                    <div class="col-sm-10">
+                                        <input  class="form-control" name="remove_selector"/>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="box-footer">
-                                <div class="form-group col-sm-2">
-                                    <button value="Create" class="btn btn-info btn-save">Save</button>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">Author selector</label>
+                                    <div class="col-sm-10">
+                                        <input  class="form-control" name="author_selector"/>
+                                    </div>
                                 </div>
-                                <div class="btn btn-default">
-                                    <a asp-action="Index">Back to List</a>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">Category id</label>
+                                    <div class="col-sm-10">
+                                        <select name="category_id" id="" class="form-control">
+                                            <option value="">123</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
+                                <div class="box-footer">
+                                    <div class="form-group col-sm-2">
+                                        <button value="Create" class="btn btn-info btn-save">Save</button>
+                                    </div>
+                                    <div class="btn btn-default">
+                                        <a href="crawler.html">Back to List</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -216,12 +226,10 @@
 <script src="../adminLayout/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../adminLayout/dist/js/adminlte.min.js"></script>
-<script src="../adminLayout/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<script src="../adminLayout/dist/js/source/add.js"></script>
+<script src="../adminLayout/dist/js/jquery.validate.min.js"></script>
+<script src="../adminLayout/dist/js/script.js"></script>
+<script src="../adminLayout/dist/js/special/add.js"></script>
 <script type="text/javascript">
-    $(document).ready(function () {
-        $('#myTable').DataTable();
-    });
 </script>
 </body>
 </html>
