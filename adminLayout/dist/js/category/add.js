@@ -42,7 +42,6 @@ $(document).ready(function () {
                     $.ajax({
                         url: END_POINT+"/api/v1/category?id="+categoryId,
                         type: 'PUT',
-                        contentType: "application/json; charset=utf-8",
                         data : JSON.stringify(data),
                         success:function(data) {
                             console.log(data.data);
@@ -69,7 +68,6 @@ $(document).ready(function () {
                     $.ajax({
                         url: END_POINT+"/api/v1/category",
                         type: 'POST',
-                        contentType: "application/json; charset=utf-8",
                         data : JSON.stringify(data),
                         success:function(data) {
                             console.log(data.data);

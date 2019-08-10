@@ -10,13 +10,15 @@ $(document).ready(function () {
             return parseInt($(this).val());
         }).get();
         console.log(searchIDs);
+        var data = {
+            "articleId" : searchIDs
+        };
         $.ajax({
             url: END_POINT + "/api/v1/article/approval",
             type: "POST",
-            data : JSON.stringify(searchIDs),
-            // contentType: "application/json; charset=utf-8",
+            data : JSON.stringify(data),
             headers: {
-                "token": "SE8EtHDKBUWjhTs51M7u8Hby09vSH3dW"
+                "Authorization": "SE8EtHDKBUWjhTs51M7u8Hby09vSH3dW"
             },
             success:function(data) {
                 loadArticle();
@@ -32,7 +34,6 @@ $(document).ready(function () {
 function loadArticle() {
     $.ajax({
         url: END_POINT + "/api/v1/article/approval",
-        // contentType: "application/json; charset=utf-8",
         // headers: {
         //     "token": "Bz0tRnVB2CBAllaOpvdhuvf_6fjnSR3R"
         // },
