@@ -19,9 +19,6 @@ $(document).ready(function () {
                     "    <td>\n" + listArticle[i].description.split(' ', 25).join(' ') + "..." +
                     "        \n" +
                     "    </td>\n" +
-                    "    <td>\n" + listArticle[i].content.split(' ', 15).join(' ') + " ..." +
-                    "        \n" +
-                    "    </td>\n" +
                     "    <td>\n" +
                     "        <a href='add.html?id=" + listArticle[i].id + "' style=\"margin-right:6px; color: dodgerblue\">\n" +
                     "            <i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\" data-toggle=\"tooltip\" title=\"Edit\"></i>\n" +
