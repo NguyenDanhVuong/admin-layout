@@ -54,7 +54,7 @@ $(document).ready(function () {
                 $("input[name=url]").val(article.url);
                 $("input[name=title]").val(article.title);
                 $("input[name=link]").val(article.link);
-                $("input[name=content]").val(article.content);
+                $("#example .fr-view").html(article.content);
                 $("input[name=description]").val(article.description);
                 $("input[name=author]").val(article.author);
 
@@ -65,7 +65,7 @@ $(document).ready(function () {
             var url = $("input[name=url]").val();
             var title = $("input[name=title]").val();
             var link = $("input[name=link]").val();
-            var content = $("input[name=content]").val();
+            var content = $("#example .fr-view").html();
             var description = $("input[name=description]").val();
             var author = $("input[name=author]").val();
             var category_id = $("select[name=category_id]").val();
@@ -86,7 +86,6 @@ $(document).ready(function () {
                     $.ajax({
                         url: END_POINT+"/api/v1/article?id="+articleId,
                         type: 'PUT',
-                        contentType: "application/json; charset=utf-8",
                         data : JSON.stringify(data),
                         success:function(data) {
                             console.log(data.data);
@@ -96,14 +95,13 @@ $(document).ready(function () {
                 }
             });
         })
-
     }
     else {
         $(document).on('click', '.btn-save', function () {
             var url = $("input[name=url]").val();
             var title = $("input[name=title]").val();
             var link = $("input[name=link]").val();
-            var content = $("input[name=content]").val();
+            var content = $("#example .fr-view").html();
             var description = $("input[name=description]").val();
             var author = $("input[name=author]").val();
             var category_id = $("select[name=category_id]").val();
@@ -125,7 +123,6 @@ $(document).ready(function () {
                     $.ajax({
                         url: END_POINT+"/api/v1/article",
                         type: 'POST',
-                        contentType: "application/json; charset=utf-8",
                         data : JSON.stringify(data),
                         success:function(data) {
                             console.log(data.data);
